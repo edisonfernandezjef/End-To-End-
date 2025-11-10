@@ -1,7 +1,10 @@
 flask
-opencv-python-headless
-numpy
+ultralytics
+torch==2.3.0+cpu
+torchvision==0.18.0+cpu
+opencv-python
 pillow
 gunicorn
-ultralytics
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 

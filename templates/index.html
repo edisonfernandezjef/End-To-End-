@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detector de Objetos</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding-top: 30px; }
+    img { width: 50%; margin-top: 20px; border-radius: 10px; }
+    input[type=file] { margin: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Sube una imagen para detectar objetos</h1>
+
+  <form method="POST" action="/predict" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" required>
+    <button type="submit">Procesar</button>
+  </form>
+
+  {% if user_image %}
+    <h2>Resultado:</h2>
+    <img src="{{ user_image }}" alt="Imagen procesada">
+  {% endif %}
+</body>
+</html>

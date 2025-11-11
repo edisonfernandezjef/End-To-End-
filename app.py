@@ -19,26 +19,39 @@ def predict():
     if file.filename == '':
         return "Archivo vacío", 400
 
+    # Guardar imagen original
     img_path = os.path.join('static', file.filename)
     file.save(img_path)
 
-    # 🧠 Cargar modelo solo cuando se lo necesita (libera RAM entre requests)
-    model = YOLO("yolo11n.pt")
+    # Obtener modelo elegido
+    model_choice = request.form.get('model_choice', 'best.pt')
 
-    results = model.predict(source=img_path, conf=0.6, device='cpu')
+    # Cargar modelo dinámicamente
+    model_path = model_choice if os.path.exists(model_choice) else "yolo11n.pt"
+    model = YOLO(model_path)
 
+    # Inferencia
+    results = model.predict(source=img_path, conf=0.4, device='cpu')
+
+    # Guardar resultado visual
     for r in results:
         im_array = r.plot()
         im = Image.fromarray(cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB))
         output_path = os.path.join('static', 'result_' + file.filename)
         im.save(output_path)
 
-    del model  # libera memoria explícitamente
+    del model  # liberar memoria
 
-    return render_template('index.html', user_image=output_path)
+    return render_template(
+        'index.html',
+        user_image=output_path,
+        original_image=img_path,
+        selected_model=model_choice
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
 

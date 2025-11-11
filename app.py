@@ -25,7 +25,7 @@ def predict():
     # 🧠 Cargar modelo solo cuando se lo necesita (libera RAM entre requests)
     model = YOLO("pruebas/best.pt")
 
-    results = model.predict(source=img_path, conf=0.25, device='cpu')
+    results = model.predict(source=img_path, conf=0.6, device='cpu')
 
     for r in results:
         im_array = r.plot()

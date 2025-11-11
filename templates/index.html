@@ -2,24 +2,131 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Detector de Objetos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector de Objetos YOLOv11</title>
   <style>
-    body { font-family: Arial; text-align: center; padding-top: 30px; }
-    img { width: 50%; margin-top: 20px; border-radius: 10px; }
-    input[type=file] { margin: 15px; }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #00c6ff;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0072ff;
+      transform: scale(1.05);
+    }
+
+    img {
+      width: 80%;
+      max-width: 600px;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: 0.4s ease;
+    }
+
+    img:hover {
+      transform: scale(1.02);
+    }
+
+    h2 {
+      margin-top: 30px;
+      font-weight: 500;
+      color: #f8f8f8;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.1);
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9rem;
+      color: #ddd;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.6rem; }
+      form { width: 90%; padding: 20px; }
+      img { width: 95%; }
+    }
   </style>
 </head>
 <body>
-  <h1>Sube una imagen para detectar objetos</h1>
+  <main>
+    <h1>Detector de Objetos con YOLOv11</h1>
 
-  <form method="POST" action="/predict" enctype="multipart/form-data">
-    <input type="file" name="file" accept="image/*" required>
-    <button type="submit">Procesar</button>
-  </form>
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required>
+      <button type="submit">Procesar Imagen</button>
+    </form>
 
-  {% if user_image %}
-    <h2>Resultado:</h2>
-    <img src="{{ user_image }}" alt="Imagen procesada">
-  {% endif %}
+    {% if user_image %}
+      <h2>Resultado:</h2>
+      <img src="{{ user_image }}" alt="Imagen procesada">
+    {% endif %}
+  </main>
+
+  <footer>
+    © 2025 Jorge Edison Fernández – Todos los derechos reservados.
+  </footer>
 </body>
 </html>

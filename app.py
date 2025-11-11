@@ -23,7 +23,7 @@ def predict():
     file.save(img_path)
 
     # 🧠 Cargar modelo solo cuando se lo necesita (libera RAM entre requests)
-    model = YOLO("pruebas/best.pt")
+    model = YOLO("yolo11n.pt")
 
     results = model.predict(source=img_path, conf=0.6, device='cpu')
 

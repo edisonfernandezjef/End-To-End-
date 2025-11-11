@@ -1,10 +1,5 @@
-flask==3.1.0
-ultralytics==8.0.158
-torch==2.0.1+cpu
-torchvision==0.15.2+cpu
-opencv-python==4.8.1.78
-pillow
+flask
 gunicorn
---extra-index-url https://download.pytorch.org/whl/cpu
+
 
 
